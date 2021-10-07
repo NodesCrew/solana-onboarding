@@ -95,7 +95,6 @@ def update_onboarding():
         for row in nodes:
             w.write(row + "\n")
 
-    # Get csv keys
     csv_keys = [
         "testnet_pk",
         "mainnet_beta_pk",
