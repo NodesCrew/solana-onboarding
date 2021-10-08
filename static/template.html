@@ -38,8 +38,8 @@
                                 <td>{{ node.testnet_pk }}</td>
                                 <td>{{ node.mainnet_beta_pk }}</td>
 
-                                {% for epoch, node_pos in node.positions.items() %}
-                                    <th scope="col">{{ node_pos }}</th>
+                                {% for epoch in epoches %}
+                                    <td >{{ node.positions[epoch] or None }}</td>
                                 {% endfor %}
                             </tr>
                         {% endfor %}
