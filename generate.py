@@ -35,10 +35,10 @@ def onboarding_generate():
         if any(node["positions"].values()):
             nodes_clean[node_pubkey] = node
 
-    with open("static/template.html") as f:
+    with open("template.html") as f:
         template = jinja2.Template(f.read())
 
-    with open("static/index.html", "w+") as w:
+    with open("index.html", "w+") as w:
         w.write(template.render(nodes=nodes_clean, epoches=epoches))
 
 
