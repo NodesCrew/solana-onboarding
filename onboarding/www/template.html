@@ -69,8 +69,8 @@
                 function table_sorter(sortName, sortOrder, data) {
                     var order = sortOrder === 'desc' ? -1 : 1;
                     data.sort(function (a, b) {
-                        var _a = a[sortName] == "-" ? 9999999 : parseInt(a[sortName]);
-                        var _b = b[sortName] == "-" ? 9999999 : parseInt(b[sortName]);
+                        var _a = a[sortName] == "-" ? 9999999.0 : parseFloat(a[sortName]);
+                        var _b = b[sortName] == "-" ? 9999999.0 : parseFloat(b[sortName]);
 
                         if (_a > _b) {
                             return order;
