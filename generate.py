@@ -3,6 +3,7 @@
 import glob
 import json
 import jinja2
+import datetime
 import collections
 
 
@@ -40,7 +41,13 @@ def onboarding_generate():
         template = jinja2.Template(f.read())
 
     with open("onboarding/www/index.html", "w+") as w:
-        w.write(template.render(nodes=nodes_clean, epoches=epoches))
+        w.write(
+            template.render(
+                nodes=nodes_clean,
+                epoches=epoches,
+                datetime=datetime.datetime.utcnow()
+            )
+        )
 
 
 if __name__ == "__main__":
