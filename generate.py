@@ -16,14 +16,15 @@ def onboarding_generate():
 
         with open(epoch_file) as f:
             for line in f:
-                node_json = json.loads(line)
-                node_pubkey = node_json["testnet_pk"]
-                node_position = node_json["onboarding_number"]
+                njson = json.loads(line)
+                node_pubkey = njson["testnet_pk"]
+                node_position = njson["onboarding_number"]
 
                 if node_pubkey not in nodes:
                     nodes[node_pubkey] = {
                         "testnet_pk": node_pubkey,
-                        "mainnet_beta_pk": node_json["mainnet_beta_pk"],
+                        "mainnet_beta_pk": njson["mainnet_beta_pk"],
+                        "tds_onboarding_group": njson["tds_onboarding_group"],
                         "positions": collections.defaultdict(dict)
                     }
                 nodes[node_pubkey]["positions"][epoch_no] = node_position
@@ -35,10 +36,10 @@ def onboarding_generate():
         if any(node["positions"].values()):
             nodes_clean[node_pubkey] = node
 
-    with open("template.html") as f:
+    with open("onboarding/www/template.html") as f:
         template = jinja2.Template(f.read())
 
-    with open("index.html", "w+") as w:
+    with open("onboarding/www/index.html", "w+") as w:
         w.write(template.render(nodes=nodes_clean, epoches=epoches))
 
 

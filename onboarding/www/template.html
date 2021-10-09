@@ -11,6 +11,16 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
         <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.css">
+
+        <style>
+            table > a:hover {
+                color: black;
+            }
+
+            td > a {
+                color: black !important;
+            }
+        </style>
     </head>
 
     <body>
@@ -26,6 +36,7 @@
                             <tr>
                                 <th scope="col" data-field="testnet_pk">Testnet PK</th>
                                 <th scope="col" data-field="mainnet_beta_pk">Mainnet PK</th>
+                                <th scope="col" data-field="tds_onboarding_group" data-sortable="true">TdS</th>
                                 {% for epoch in epoches %}
                                     <th scope="col" data-field="epoch_{{ epoch }}" data-sortable="true">{{ epoch }}</th>
                                 {% endfor %}
@@ -35,11 +46,16 @@
                         <tbody>
                         {% for node_pubkey, node in nodes.items() %}
                             <tr>
-                                <td>{{ node.testnet_pk }}</td>
-                                <td>{{ node.mainnet_beta_pk }}</td>
+                                <td>
+                                    <a target="_blank" href="https://github.com/solana-labs/stake-o-matic/wiki/Validator-{{ node.testnet_pk }}">{{ node.testnet_pk }}</a>
+                                </td>
+                                <td>
+                                    <a target="_blank" href="https://github.com/solana-labs/stake-o-matic/wiki/Validator-{{ node.mainnet_beta_pk }}">{{ node.mainnet_beta_pk }}</a>
+                                </td>
+                                <td>{{ node.tds_onboarding_group or "-" }}</td>
 
                                 {% for epoch in epoches %}
-                                    <td >{{ node.positions[epoch] or None }}</td>
+                                    <td >{{ node.positions[epoch] or "-" }}</td>
                                 {% endfor %}
                             </tr>
                         {% endfor %}
