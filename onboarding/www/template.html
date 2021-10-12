@@ -50,8 +50,8 @@
                         <tbody>
                         {% for node_pubkey, node in nodes.items() %}
                             <tr>
-                                <td><a target="_blank" href="https://github.com/solana-labs/stake-o-matic/wiki/Validator-{{ node.testnet_pk }}">{{ node.testnet_pk }}</a></td>
-                                <td><a target="_blank" href="https://github.com/solana-labs/stake-o-matic/wiki/Validator-{{ node.mainnet_beta_pk }}">{{ node.mainnet_beta_pk }}</a></td>
+                                <td><a target="_blank" href="https://github.com/solana-labs/stake-o-matic/wiki/Validator-{{ node.testnet_pk }}">{{ node.testnet_pk[0:5] }}...{{ node.testnet_pk[-5:] }}</a></td>
+                                <td><a target="_blank" href="https://github.com/solana-labs/stake-o-matic/wiki/Validator-{{ node.mainnet_beta_pk }}">{{ node.mainnet_beta_pk[0:5] }}...{{ node.mainnet_beta_pk[-5:] }}</a></td>
                                 <td>{{ node.tds_onboarding_group or "-" }}</td>
 
                                 {%- for epoch in epoches -%}
